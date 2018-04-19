@@ -40,7 +40,7 @@ bot.on('ready', () => {
     bot.user.setActivity('music!', { type: "LISTENING" });
 });
 
-exports.loadCmds();
+loadCmds();
 
 bot.on('message', async message => {
     if (message.author.bot) return;
