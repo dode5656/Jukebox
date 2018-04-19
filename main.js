@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const bot = new Discord.Client({ disableEveryone: true });
 
-const youtube = new Youtube("AIzaSyDnh9chjP4FWqbRXO8OEXWZ4hmBeRDl9Co");
+const youtube = new Youtube(process.env.YTAPIKEY);
 
 botCommands = new Discord.Collection();
 
@@ -58,4 +58,4 @@ bot.on('message', async message => {
     if(commandfile) commandfile.run(bot,message,args);
 });
 
-bot.login("Mzg4MzU3NzkwNjk3MTI3OTM4.DbOFbQ.8hLUA-lr8d9KOdASbzgHG4wozPA");
+bot.login(process.env.TOKEN);
