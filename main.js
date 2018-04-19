@@ -10,7 +10,7 @@ const youtube = new Youtube(process.env.YTAPIKEY);
 
 botCommands = new Discord.Collection();
 
-exports.loadCmds = () => {
+function loadCmds() {
     fs.readdir("./commands/", (err, files) => {
 
         if(err) console.log(err);
@@ -53,6 +53,14 @@ bot.on('message', async message => {
     
 
     if (!message.content.startsWith(prefix)) return;
+    if (cmd === `${prefix}reload`) {
+        let embed = new Discord.RichEmbed()
+            .setDescription('All Commands Reloaded!')
+            .setColor('#ff871e');
+
+        message.channel.send(embed);
+        loadCmds();
+    }
 
     let commandfile = botCommands.get(cmd.slice(prefix.length));
     if(commandfile) commandfile.run(bot,message,args);
