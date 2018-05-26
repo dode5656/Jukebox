@@ -8,7 +8,7 @@ const bot = new Discord.Client({ disableEveryone: true });
 
 const youtube = new Youtube(process.env.YTAPIKEY);
 
-botCommands = new Discord.Collection();
+const botCommands = new Discord.Collection();
 
 function loadCmds() {
     fs.readdir("./commands/", (err, files) => {
@@ -58,8 +58,8 @@ bot.on('message', async message => {
             .setDescription('All Commands Reloaded!')
             .setColor('#ff871e');
 
+        await loadCmds();
         message.channel.send(embed);
-        loadCmds();
     }
 
     let commandfile = botCommands.get(cmd.slice(prefix.length));
@@ -67,3 +67,7 @@ bot.on('message', async message => {
 });
 
 bot.login(process.env.TOKEN);
+
+module.exports = {
+  loadCmds
+}

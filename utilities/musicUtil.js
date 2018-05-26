@@ -1,12 +1,14 @@
+/* global Map */
+
 const ytdl = require('ytdl-core');
 const Youtube = require('simple-youtube-api');
 const youtube = new Youtube(process.env.YTAPIKEY);
 const Discord = require('discord.js');
 const { song } = require('../commands/play.js');
 
-exports.queue = new Map();
+const queue = new Map();
 
-exports.play = (guild, song) => {
+function play(guild, song) {
     const serverQueue = queue.get(guild.id);
 
     if (!song) {
@@ -25,6 +27,10 @@ exports.play = (guild, song) => {
 
     serverQueue.textChannel.send(`Started Playing: **${song.title}**!`);
 }
+module.exports = {
+  play,
+  queue
+}
 
-exports.serverQueue = queue.get(message.guild.id);
+
 

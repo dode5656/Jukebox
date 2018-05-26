@@ -6,7 +6,7 @@ const youtube = new Youtube(process.env.YTAPIKEY);
 exports.run = async (bot, message, args) => {
     const searchString = args.join(" ");
     const queue = musicUtil.queue;
-    const serverQueue = musicUtil.serverQueue;
+    const serverQueue = musicUtil.queue.get(message.guild.id);
 
     const voiceChannel = message.member.voiceChannel;
     if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
@@ -27,14 +27,14 @@ exports.run = async (bot, message, args) => {
         return;
     }
     try {
-        var videos = await youtube.searchVideos(args[0], 1);
+        var videos = await youtube.searchVideos(searchString, 1);
         var video = await youtube.getVideoByID(videos[0].id);
     } catch (error) {
         console.error(error)
         message.channel.send("I couldn't obtain any results.");
     }
 
-    exports.song = {
+    const song = exports.song = {
         id: video.id,
         title: video.title,
         url: `https://www.youtube.com/watch?v=${video.id}`
