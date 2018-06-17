@@ -9,6 +9,7 @@ const bot = new Discord.Client({ disableEveryone: true });
 const youtube = new Youtube(process.env.YTAPIKEY);
 
 const botCommands = new Discord.Collection();
+const botAliases = new Discord.Collection();
 
 function loadCmds() {
     fs.readdir("./commands/", (err, files) => {
@@ -26,9 +27,11 @@ function loadCmds() {
             let props = require(`./commands/${f}`);
             console.log(`${f} loaded!`);
             botCommands.set(props.help.name, props);
-            if (props.help.aliases) props.help.aliases.forEach(alias => {
-                if (botCommands.get(alias)) return console.log(`Problem with alias: ${alias}`);
-                botCommands.set(alias, props);
+            if (props.conf.aliases) props.conf.aliases.forEach(alias => {
+                if (botAliases.get(alias)) return console.log(`Problem with alias: ${alias}`);
+                props.conf.aliases.forEach(alias => {
+                    botAliases.set(alias, props.help.name);
+                });
             });
         });
     });
