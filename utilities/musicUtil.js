@@ -1,9 +1,7 @@
-/* global Map */
-
 const ytdl = require('ytdl-core');
 const botconfig = require('../botconfig.json');
 const Youtube = require('simple-youtube-api');
-const youtube = new Youtube(`${botconfig.ytapikey}`);
+const youtube = new Youtube(process.env.YTAPIKEY);
 const Discord = require('discord.js');
 const { song } = require('../commands/play.js');
 
