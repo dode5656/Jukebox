@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Youtube = require('simple-youtube-api');
 const musicUtil = require('../utilities/musicUtil.js');
 const botconfig = require('../botconfig.json');
-const youtube = new Youtube(process.env.YTAPIKEY);
+const youtube = new Youtube(`${botconfig.YTAPI}`);
 
 exports.run = async (bot, message, args) => {
     const searchString = args.join(" ");
