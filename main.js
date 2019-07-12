@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const bot = new Discord.Client({ disableEveryone: true });
 
-const youtube = new Youtube(process.env.YTAPIKEY);
+const youtube = new Youtube(botconfig.YTAPI);
 
 const botCommands = new Discord.Collection();
 const botAliases = new Discord.Collection();
@@ -66,7 +66,7 @@ bot.on('message', async message => {
     if(commandfile) commandfile.run(bot,message,args);
 });
 
-bot.login(process.env.TOKEN);
+bot.login(botconfig.YTAPI);
 
 module.exports = {
   loadCmds
