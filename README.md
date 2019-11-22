@@ -11,3 +11,7 @@ Then you can just initialize the environment by doing `npm init` and install the
 You have to replace `REPLACEPLEASE` in the botconfig.json file with the required stuff. `token` is the Discord Bot token, `YTAPI` is the Youtube Data v3 API key, `ownerid` is the User ID of the person who you want to access `restart` command.
 
 You need FFMPEG for the bot to work and play music, otherwise it will error and possibly crash.
+
+# LICENSE
+
+See the license at [LICENSE](https://github.com/dode5656/Jukebox/blob/master/LICENSE)
