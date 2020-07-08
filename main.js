@@ -66,7 +66,7 @@ bot.on('message', async message => {
     if(commandfile) commandfile.run(bot,message,args);
 });
 
-bot.login(botconfig.YTAPI);
+bot.login(botconfig.token);
 
 module.exports = {
   loadCmds
