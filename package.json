@@ -9,7 +9,7 @@
     "discord.js": "^11.3.2",
     "node-opus": "^0.3.0",
     "simple-youtube-api": "^5.0.2",
-    "ytdl-core": "^0.20.4",
+    "ytdl-core": "^0.29.7",
     "express": "^4.16.3"
   },
   "devDependencies": {},
